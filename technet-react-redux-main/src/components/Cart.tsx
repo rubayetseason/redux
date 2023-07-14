@@ -23,8 +23,7 @@ import {
 export default function Cart() {
   //! Dummy data
 
-  const { products } = useAppSelector((state) => state.cart);
-  const total = 0;
+  const { products, total } = useAppSelector((state) => state.cart);
 
   //! **
 
