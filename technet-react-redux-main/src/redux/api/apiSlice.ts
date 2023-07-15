@@ -3,6 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+  //create a tag and give it a name
+  tagTypes: ['comments'],
   endpoints: (builder) => ({
     //get all products query
     getProducts: builder.query({
@@ -14,6 +16,8 @@ export const api = createApi({
     }),
     getComment: builder.query({
       query: (id) => `/comment/${id}`,
+      //provide new tag/refetch here
+      providesTags: ['comments'],
     }),
     postComment: builder.mutation({
       //query recieves one parameter only
@@ -22,6 +26,8 @@ export const api = createApi({
         method: 'POST',
         body: data,
       }),
+      //when to trigger refetch
+      invalidatesTags: ['comments'],
     }),
   }),
 });
